@@ -17,8 +17,8 @@ notif:
     scheme: mqtt
     host: localhost
     port: 1883
-    usernameFile: /opt/diun/userfile
-    passwordFile: /opt/diun/pwfile
+    usernameFile: /opt/diun/mqtt_username
+    passwordFile: /opt/diun/mqtt_password
     client: diun
     topic: software/update
     qos: 0

@@ -1,4 +1,3 @@
-/userfile
-/pwfile
+/mqtt_*
 /diun.db
 /watch.txt
