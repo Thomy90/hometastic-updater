@@ -1,0 +1,33 @@
+watch:
+  workers: 10
+  schedule: "0 1 * * *"
+  jitter: 30s
+  firstCheckNotif: false
+  runOnStartup: true
+
+defaults:
+  watchRepo: true
+  notifyOn:
+    - new
+  maxTags: 1
+  sortTags: semver
+
+notif:
+  mqtt:
+    scheme: mqtt
+    host: localhost
+    port: 1883
+    usernameFile: /opt/diun/userfile
+    passwordFile: /opt/diun/pwfile
+    client: diun
+    topic: software/update
+    qos: 0
+
+  script:
+      cmd: "sh"
+      args:
+        - "/opt/diun/notify.sh"
+
+providers:
+  file:
+    filename: /opt/diun/config.yml
