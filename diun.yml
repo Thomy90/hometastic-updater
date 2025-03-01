@@ -29,7 +29,5 @@ notif:
         - "/opt/diun/notify.sh"
 
 providers:
-  file:
-    filename: /opt/diun/config.yml
   docker:
     watchByDefault: false
