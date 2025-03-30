@@ -1,3 +1,4 @@
 /mqtt_*
 /diun.db
 /watch.txt
+/diun.env

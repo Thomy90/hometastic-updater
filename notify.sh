@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-for folder in $(cat /opt/diun/watch.txt); do
+for folder in $(cat /opt/hometastic/diun/watch.txt); do
     if [ ! -f "$folder/.env" ]; then
         continue
     fi

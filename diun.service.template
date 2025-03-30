@@ -1,0 +1,46 @@
+[Unit]
+Description=Diun
+Documentation=https://crazymax.dev/diun/
+After=syslog.target
+After=network.target
+
+[Service]
+EnvironmentFile=-$DIUN_ROOT/diun.env
+RestartSec=2s
+Type=simple
+ExecStart=/usr/local/bin/diun serve
+Restart=always
+
+# Environment variables
+Environment="TZ=Europe/Berlin"
+Environment="LOG_LEVEL=info"
+
+Environment="DIUN_DB_PATH=$DIUN_ROOT/diun.db"
+
+Environment="DIUN_WATCH_WORKERS=10"
+Environment="DIUN_WATCH_SCHEDULE=0 1 * * *"
+Environment="DIUN_WATCH_JITTER=30s"
+Environment="DIUN_WATCH_FIRSTCHECKNOTIF=false"
+Environment="DIUN_WATCH_RUNONSTARTUP=true"
+
+Environment="DIUN_DEFAULTS_WATCHREPO=true"
+Environment="DIUN_DEFAULTS_NOTIFYON=new"
+Environment="DIUN_DEFAULTS_MAXTAGS=1"
+Environment="DIUN_DEFAULTS_SORTTAGS=semver"
+
+Environment="DIUN_NOTIF_MQTT_SCHEME=mqtt"
+Environment="DIUN_NOTIF_MQTT_HOST=localhost"
+Environment="DIUN_NOTIF_MQTT_PORT=1883"
+Environment="DIUN_NOTIF_MQTT_USERNAMEFILE=$DIUN_ROOT/mqtt_username"
+Environment="DIUN_NOTIF_MQTT_PASSWORDFILE=$DIUN_ROOT/mqtt_password"
+Environment="DIUN_NOTIF_MQTT_CLIENT=diun"
+Environment="DIUN_NOTIF_MQTT_TOPIC=software/update"
+Environment="DIUN_NOTIF_MQTT_QOS=0"
+
+Environment="DIUN_NOTIF_SCRIPT_CMD=sh"
+Environment="DIUN_NOTIF_SCRIPT_ARGS=$DIUN_ROOT/notify.sh"
+
+Environment="DIUN_PROVIDERS_DOCKER=true"
+
+[Install]
+WantedBy=multi-user.target
