@@ -1,0 +1,5 @@
+- name: crazymax/diun
+  include_tags:
+    - ^4\.\d+\.\d+$
+  metadata:
+    update_self: true

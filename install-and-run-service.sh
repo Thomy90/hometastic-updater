@@ -10,7 +10,7 @@ fi
     cd "$(dirname "$0")"
 
     echo "Deploying systemd service: diun"
-    DIUN_ROOT=$(pwd) envsubst < diun.service.template > /etc/systemd/system/diun.service
+    DIUN_ROOT=$(pwd) envsubst < setup/diun.service.template > /etc/systemd/system/diun.service
 
     systemctl daemon-reload
     systemctl enable diun

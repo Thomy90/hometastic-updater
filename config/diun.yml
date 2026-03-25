@@ -1,0 +1,37 @@
+db:
+  path: data/diun.db
+
+watch:
+  workers: 10
+  schedule: "0 1 * * *"
+  jitter: 30s
+  firstCheckNotif: false
+  runOnStartup: false
+
+defaults:
+  watchRepo: true
+  notifyOn:
+    - new
+  maxTags: 1
+  sortTags: semver
+
+notif:
+  mqtt:
+    scheme: mqtt
+    host: localhost
+    port: 1883
+    usernameFile: config/notif/mqtt/mqtt_username
+    passwordFile: config/notif/mqtt/mqtt_password
+    client: diun
+    topic: software/update
+    qos: 0
+  script:
+    cmd: "sh"
+    args:
+      - "config/notif/script/docker-update.sh"
+
+providers:
+  docker:
+    watchByDefault: false
+  file:
+    directory: config/providers/file
