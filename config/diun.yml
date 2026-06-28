@@ -1,6 +1,3 @@
-db:
-  path: data/diun.db
-
 watch:
   workers: 10
   schedule: "0 1 * * *"
@@ -18,20 +15,19 @@ defaults:
 notif:
   mqtt:
     scheme: mqtt
-    host: localhost
+    host: mqtt-broker
     port: 1883
-    usernameFile: config/notif/mqtt/mqtt_username
-    passwordFile: config/notif/mqtt/mqtt_password
+    usernameFile: /config/notif/mqtt/mqtt_username
+    passwordFile: /config/notif/mqtt/mqtt_password
     client: diun
     topic: software/update
     qos: 0
   script:
     cmd: "sh"
     args:
-      - "config/notif/script/docker-update.sh"
+      - -c
+      - 'echo "$DIUN_ENTRY_IMAGE" >> /update-queue/update-queue.txt'
 
 providers:
   docker:
     watchByDefault: false
-  file:
-    directory: config/providers/file

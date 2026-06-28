@@ -1,0 +1,7 @@
+[Unit]
+Description=Process docker update queue
+
+[Service]
+Type=oneshot
+ExecStart=$REPO_ROOT/systemd/docker-update-queue.sh
+Environment=QUEUE_FILE=$REPO_ROOT/update-queue/update-queue.txt

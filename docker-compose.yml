@@ -1,0 +1,25 @@
+services:
+  diun:
+    image: "crazymax/diun:${IMAGE_TAG:-latest}"
+    container_name: "diun"
+    restart: "always"
+    networks:
+      - "reverse-proxy"
+    command: serve
+    volumes:
+      - "./data:/data"
+      - "./config:/config"
+      - "./update-queue:/update-queue"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      - "LOG_LEVEL=debug"
+      - "CONFIG=/config/diun.yml"
+      - "DIUN_DB_PATH=/data/diun.db"
+    labels:
+      - "diun.enable=true"
+      - "diun.include_tags=^\\d+\\.\\d+\\.\\d+$"
+
+networks:
+  reverse-proxy:
+    external: true

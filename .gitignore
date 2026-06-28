@@ -1,2 +1,4 @@
 diun.db
 mqtt_*
+/.env
+/update-queue
